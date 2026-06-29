@@ -11,5 +11,5 @@ prod/*.tfstate
 .terraform.lock.hcl
 terraform.tfstate.backup
 terraform.tfstate
-.terraform.lock.hcl
+#.terraform.lock.hcl
 .terraform/
