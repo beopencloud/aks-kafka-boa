@@ -9,7 +9,8 @@ Ce document propose un sizing de départ, pas un dimensionnement définitif
 
 |  Parameters | AKS DEV | AKS PREPROD | AKS PROD |
 |:-------- |:--------:| --------:| --------:|
-| vm size     | Standard_D8s_v5   | Standard_D8s_v5    | Standard_D8s_v5 |
+| vm size (Default Pool)    | Standard_D4s_v5   | Standard_D4ds_v5    | Standard_D4as_v5 |
+| vm size (App Pool)    | Standard_D4s_v5   | Standard_D4ds_v5    | Standard_D8ds_v5 |
 | node count     | 3   | 4    | 7 |
 | max pod     | 110  | 110  | 110 |
 | Os Disk Size     | 50  | 50  | 50 |
@@ -38,9 +39,9 @@ Ce document propose un sizing de départ, pas un dimensionnement définitif
 |  Ressources Azure | AKS DEV | AKS PREPROD | AKS PROD |
 |:-------- |:--------:| --------:| --------:|
 | Resource Group | RG-DEV | RG-PREPROD | RG-PROD |
-| Vnet | VNET-KUB-DEV | VNET-KUB-PREPROD| VNET-KUB-DEV |
+| Vnet | VNET-KUB-DEV | VNET-KUB-PREPROD-NEW| VNET-KUB-PROD_NEW |
 | Subnet | default | default | default |
-| Subnet CIDR | 10.110.0.0/24 | 10.111.0.0/24 | 10.118.0.0/24 |
+| Subnet CIDR | 10.110.0.0/24 | 10.150.0.0/24| 10.160.0.0/24 |
 | Entra ID User Group AKS Admin | GRP_KUB_DEV | GRP_KUB_PREPROD | GRP_KUB_PRDO |
 
 
@@ -91,4 +92,22 @@ kubelogin convert-kubeconfig -l azurecli
 ```
 kubectl get nodes
 kubectl get pod -n kube-system
+```
+
+## Mise à jour du cluster pour rediriger les flux sortant vers PaloAlto
+Pour rediriger les flux sortant du cluster vers PaloAlto, voici les actions à faire:
+1. Associer la table routage au subnet sur lequel se trouve le cluter.
+Exemple pour le cluster de dev
+- Dans le vnet _VNET-KUB-DEV_, subnet _default_, route table sélectionné __RT_KUB_DEV_TO_PALOALTO__, et enregistrer.
+
+2. Changer le __output_type__ de __loadBalancer__ à __userDefinedRoute__
+Exemple pour le cluster de dev
+Dans le dossier dev du code terraform, modifier la ligne 105 du fichier __main.tf__ à __outbound_type : "userDefinedRouting"__
+
+3. Déployer les mise à jour
+```
+terraform plan
+```
+```
+terraform apply
 ```
