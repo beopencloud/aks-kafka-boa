@@ -102,7 +102,7 @@ Dans le vnet _VNET-KUB-DEV_, subnet _default_, route table sélectionné __RT_KU
 
 2. Changer le __output_type__ de __loadBalancer__ à __userDefinedRoute__
 Exemple pour le cluster de dev
-Dans le dossier dev du code terraform, modifier la ligne 105 du fichier __main.tf__ à __outbound_type : "userDefinedRouting"__
+Dans le dossier dev du code terraform, <br> modifier la ligne 105 du fichier __main.tf__ à __outbound_type : "userDefinedRouting"__
 
 3. Déployer les mise à jour
 ```
