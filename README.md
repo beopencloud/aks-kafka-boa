@@ -96,9 +96,9 @@ kubectl get pod -n kube-system
 
 ## Mise à jour du cluster pour rediriger les flux sortant vers PaloAlto
 Pour rediriger les flux sortant du cluster vers PaloAlto, voici les actions à faire:
-1. Associer la table routage au subnet sur lequel se trouve le cluter.
-Exemple pour le cluster de dev
-- Dans le vnet _VNET-KUB-DEV_, subnet _default_, route table sélectionné __RT_KUB_DEV_TO_PALOALTO__, et enregistrer.
+1. Associer la table routage au subnet sur lequel se trouve le cluter. <br>
+Exemple pour le cluster de dev <br>
+Dans le vnet _VNET-KUB-DEV_, subnet _default_, route table sélectionné __RT_KUB_DEV_TO_PALOALTO__, et enregistrer.
 
 2. Changer le __output_type__ de __loadBalancer__ à __userDefinedRoute__
 Exemple pour le cluster de dev
