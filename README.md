@@ -100,9 +100,9 @@ Pour rediriger les flux sortant du cluster vers PaloAlto, voici les actions à f
 Exemple pour le cluster de dev <br>
 Dans le vnet _VNET-KUB-DEV_, subnet _default_, route table sélectionné __RT_KUB_DEV_TO_PALOALTO__, et enregistrer.
 
-2. Changer le __output_type__ de __loadBalancer__ à __userDefinedRoute__
+2. Changer le __output_type__ de __loadBalancer__ à __userDefinedRoute__ <br>
 Exemple pour le cluster de dev
-Dans le dossier dev du code terraform, <br> modifier la ligne 105 du fichier __main.tf__ à __outbound_type : "userDefinedRouting"__
+Dans le dossier dev du code terraform, modifier la ligne 105 du fichier __main.tf__ à __outbound_type : "userDefinedRouting"__
 
 3. Déployer les mise à jour
 ```
